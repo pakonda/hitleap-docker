@@ -1,4 +1,5 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc
+LABEL maintainer="pakondaman@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -16,7 +17,6 @@ WORKDIR /
 COPY hitleap-startup.sh .
 RUN chmod +x hitleap-startup.sh
 
-ENTRYPOINT [ "/hitleap-startup.sh" ]
-
-
 EXPOSE 80
+
+ENTRYPOINT [ "/hitleap-startup.sh" ]
