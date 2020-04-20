@@ -1,5 +1,7 @@
 # HitLeap Docker
 
+<a target="_blank" href="https://hitleap.com/by/pkd"><img src="https://hitleap.com/banner.png" width="468" height="60"></a>
+
 [HitLeap](https://hitleap.com/by/pkd) is a top traffic exchange service that helps you to increase visitors, rankings and more.
 
 ```shell
