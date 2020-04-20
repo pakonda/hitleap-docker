@@ -1,5 +1,7 @@
 # HitLeap Docker
 
+[HitLeap](https://hitleap.com/by/pkd) is a top traffic exchange service that helps you to increase visitors, rankings and more.
+
 ```shell
 # hitleap will store sessions in this file
 echo '{"newestVersion":{"str":"3.1.29"}}' > data
