@@ -11,7 +11,7 @@ docker run --rm -it \
     -v /dev/shm:/dev/shm \
     -v $(pwd)/data:/hitleap/app/data \
     -p 8080:80 \
-    hitleap
+    pakonda/hitleap:3.1.29
 ```
 
 With self signed certificate
@@ -29,5 +29,5 @@ docker run --rm -it \
     -v $(pwd)/ssl:/etc/nginx/ssl \
     -v $(pwd)/data:/hitleap/app/data \
     -p 443:443 \
-    hitleap
+    pakonda/hitleap:3.1.29
 ```
