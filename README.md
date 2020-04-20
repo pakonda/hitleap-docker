@@ -12,6 +12,9 @@ docker run --rm -it \
     -v $(pwd)/data:/hitleap/app/data \
     -p 8080:80 \
     pakonda/hitleap:3.1.29
+
+# go to http://localhost:8080
+# sign in
 ```
 
 With self signed certificate
