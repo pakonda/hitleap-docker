@@ -18,17 +18,13 @@ Get $100 in cloud credits from @DigitalOcean using my link: https://m.do.co/t/e9
 -------------------------
 
 ```shell
-# hitleap will store sessions in this file
-echo '{"newestVersion":{"str":"3.1.29"}}' > data
-
 docker run -d \
     --name hitleap \
     -e RESOLUTION=800x600 \
     -e VNC_PASSWORD=1234 \
     -v /dev/shm:/dev/shm \
-    -v $(pwd)/data:/hitleap/app/data \
     -p 8080:80 \
-    pakonda/hitleap:3.1.29
+    pakonda/hitleap
 
 # go to http://localhost:8080
 # sign in
@@ -47,7 +43,6 @@ docker run -d \
     -e SSL_PORT=443 \
     -v /dev/shm:/dev/shm \
     -v $(pwd)/ssl:/etc/nginx/ssl \
-    -v $(pwd)/data:/hitleap/app/data \
     -p 443:443 \
-    pakonda/hitleap:3.1.29
+    pakonda/hitleap
 ```
