@@ -1,14 +1,27 @@
 # HitLeap Docker
 
+![Docker Pulls](https://img.shields.io/docker/pulls/pakonda/hitleap)
+![Docker Stars](https://img.shields.io/docker/stars/pakonda/hitleap)
+![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/pakonda/hitleap?sort=semver)
+
+[HitLeap](https://hitleap.com/by/pkd) docker image with HTML5 VNC interface to access
+
+-------------------------
 <a target="_blank" href="https://hitleap.com/by/pkd"><img src="https://hitleap.com/banner.png" width="468" height="60"></a>
 
-[HitLeap](https://hitleap.com/by/pkd) is a top traffic exchange service that helps you to increase visitors, rankings and more.
+Get $100 in cloud credits from @DigitalOcean using my link: https://m.do.co/t/e9d7773c782b
+
+-------------------------
+
+## Quick Start
+
+-------------------------
 
 ```shell
 # hitleap will store sessions in this file
 echo '{"newestVersion":{"str":"3.1.29"}}' > data
 
-docker run --rm -it \
+docker run -d \
     --name hitleap \
     -e RESOLUTION=800x600 \
     -e VNC_PASSWORD=1234 \
@@ -27,7 +40,7 @@ With self signed certificate
 mkdir -p ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
 
-docker run --rm -it \
+docker run -d \
     --name hitleap \
     -e RESOLUTION=800x600 \
     -e VNC_PASSWORD=1234 \
