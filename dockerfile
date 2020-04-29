@@ -13,6 +13,9 @@ RUN curl -L https://hitleap.com/viewer/download?platform=Linux --output /tmp/hit
     ln -s /hitleap/hl /root/Desktop && \
     rm /tmp/hitleap.tar.xz
 
+# pipe hitleap logs to stdout
+RUN ln -sf /proc/1/fd/1 /hitleap/app/hitleap-viewer.log
+
 WORKDIR /
 COPY hitleap-startup.sh .
 RUN chmod +x hitleap-startup.sh
