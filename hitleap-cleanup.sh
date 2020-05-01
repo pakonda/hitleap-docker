@@ -2,6 +2,6 @@
 
 while true
 do
-    sleep 300
+    sleep 1800
     rm -f /tmp/.org.chromium.*
 done
