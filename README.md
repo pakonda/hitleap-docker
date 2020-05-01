@@ -1,8 +1,8 @@
 # HitLeap Docker
 
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/pakonda/hitleap)
 ![Docker Pulls](https://img.shields.io/docker/pulls/pakonda/hitleap)
-![Docker Stars](https://img.shields.io/docker/stars/pakonda/hitleap)
-![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/pakonda/hitleap?sort=semver)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/pakonda/hitleap)
 
 [HitLeap](https://hitleap.com/by/pkd) docker image with HTML5 VNC interface to access
 
