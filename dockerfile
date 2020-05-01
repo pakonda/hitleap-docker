@@ -19,8 +19,8 @@ RUN cd /hitleap/app/releases/*/ && \
     ln -sf /proc/1/fd/1 ./cefsimple-log.txt
 
 WORKDIR /
-COPY hitleap-startup.sh .
-RUN chmod +x hitleap-startup.sh
+COPY hitleap-*.sh /
+RUN chmod +x hitleap-*.sh
 
 EXPOSE 80
 

@@ -1,6 +1,7 @@
 #! /bin/bash
 
 /startup.sh &
+/hitleap-cleanup.sh &
 
 SERVICE="x11vnc"
 is_x11vnc_run=false
