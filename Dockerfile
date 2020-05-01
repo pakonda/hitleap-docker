@@ -16,7 +16,7 @@ RUN curl -L https://hitleap.com/viewer/download?platform=Linux --output /tmp/hit
 # pipe hitleap logs to stdout
 RUN ln -sf /proc/1/fd/1 /hitleap/app/hitleap-viewer.log
 RUN cd /hitleap/app/releases/*/ && \
-    ln -sf /proc/1/fd/1 ./cefsimple-log.txt
+    ln -sf /dev/null ./cefsimple-log.txt
 
 WORKDIR /
 COPY hitleap-*.sh /
