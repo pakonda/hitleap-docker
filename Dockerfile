@@ -15,14 +15,14 @@ RUN apt-get update && apt-get -y install \
 USER 1000
 
 # Install HitLeap
-RUN mkdir -p $HITLEAP_DIR
-RUN wget -qO- https://hitleap.com/viewer/download?platform=Linux | tar -xJf - -C $HITLEAP_DIR
-RUN chmod +x $HITLEAP_DIR/HitLeap-Viewer.desktop
-RUN cp $HITLEAP_DIR/app/data $HITLEAP_DIR/app/data.orig
+RUN mkdir -p $HITLEAP_DIR && \
+    wget -qO- https://hitleap.com/viewer/download?platform=Linux | tar -xJf - -C $HITLEAP_DIR && \
+    chmod +x $HITLEAP_DIR/HitLeap-Viewer.desktop && \
+    cp $HITLEAP_DIR/app/data $HITLEAP_DIR/app/data.orig
 
 # Pipe hitleap logs
-RUN ln -sf /proc/1/fd/1 $HITLEAP_DIR/app/hitleap-viewer.log
-RUN cd $HITLEAP_DIR/app/releases/*/ && \
+RUN ln -sf /proc/1/fd/1 $HITLEAP_DIR/app/hitleap-viewer.log && \
+    cd $HITLEAP_DIR/app/releases/*/ && \
     ln -sf /dev/null ./cefsimple-log.txt
 
 COPY --chown=1000:root *.sh $STARTUPDIR/
