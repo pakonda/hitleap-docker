@@ -1,27 +1,33 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc
+FROM consol/ubuntu-icewm-vnc
 LABEL maintainer="pakondaman@gmail.com"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV HITLEAP_DIR=$HOME/hitleap \
+    VNC_RESOLUTION=800x600
 
-RUN mkdir -p /hitleap /root/Desktop
+USER 0
+# RUN sed -i 's|archive.ubuntu|th.archive.ubuntu|g' /etc/apt/sources.list
+RUN apt-get update && apt-get -y install \
+    xz-utils \
+    xdotool \
+    chromium-browser \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+USER 1000
 
-RUN curl -L https://hitleap.com/viewer/download?platform=Linux --output /tmp/hitleap.tar.xz && \
-    tar -xJf /tmp/hitleap.tar.xz -C /hitleap && \
-    mv /hitleap/HitLeap-Viewer.desktop /hitleap/hl && \
-    chmod +x /hitleap/hl && \
-    ln -s /hitleap/app /root/Desktop && \
-    ln -s /hitleap/hl /root/Desktop && \
-    rm /tmp/hitleap.tar.xz
+# Install HitLeap
+RUN mkdir -p $HITLEAP_DIR
+RUN wget -qO- https://hitleap.com/viewer/download?platform=Linux | tar -xJf - -C $HITLEAP_DIR
+RUN chmod +x $HITLEAP_DIR/HitLeap-Viewer.desktop
+RUN cp $HITLEAP_DIR/app/data $HITLEAP_DIR/app/data.orig
 
-# pipe hitleap logs to stdout
-RUN ln -sf /proc/1/fd/1 /hitleap/app/hitleap-viewer.log
-RUN cd /hitleap/app/releases/*/ && \
+# Pipe hitleap logs
+RUN ln -sf /proc/1/fd/1 $HITLEAP_DIR/app/hitleap-viewer.log
+RUN cd $HITLEAP_DIR/app/releases/*/ && \
     ln -sf /dev/null ./cefsimple-log.txt
 
-WORKDIR /
-COPY hitleap-*.sh /
-RUN chmod +x hitleap-*.sh
+COPY --chown=1000:root *.sh $STARTUPDIR/
+RUN chmod a+x $STARTUPDIR/hitleap_*.sh
 
-EXPOSE 80
 
-ENTRYPOINT [ "/hitleap-startup.sh" ]
+ENTRYPOINT ["/dockerstartup/hitleap_startup.sh"]
+CMD [ "--wait"]
