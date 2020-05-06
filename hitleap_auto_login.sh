@@ -17,7 +17,8 @@ isLoggedIn() {
 until [[ $WIN_ID ]]; do getHitleapId; sleep 1; done
 
 # Start auto log-in
-sleep 5
+echo -e "\nWaiting for homepage load. Auto log-in script will run in 60 sec.\n"
+sleep 60
 # xdotool windowactivate $WIN_ID # not available on xvfb
 xdotool sleep 1
 xdotool key Tab
