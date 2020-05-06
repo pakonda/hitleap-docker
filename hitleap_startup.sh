@@ -7,14 +7,12 @@ if [ -z "$HITLEAP_USER" ] || [ -z "$HITLEAP_PASS" ]; then
 fi
 
 ## start xvfb
-echo -e "\nStarting virtual X frame buffer: Xvfb $DISPLAY\n"
-Xvfb $DISPLAY -ac -screen 0 800x600x16 -nolisten tcp &
-
-## wait xvnc started
-until pgrep Xvfb; do sleep 1; done
-sleep 3
+echo -e "\nStarting Xvfb DISPLAY=$DISPLAY"
+sudo Xvfb $DISPLAY -ac -screen 0 800x600x16 -nolisten tcp &
+until pids=$(pidof Xvfb); do sleep 1; done
 
 ## start hitleap
+sleep 3;
 echo -e "\nStarting HitLeap Viewer\n"
 cp $HITLEAP_DIR/app/data.orig $HITLEAP_DIR/app/data
 $HITLEAP_DIR/hitleap_auto_login.sh &

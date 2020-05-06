@@ -16,14 +16,16 @@ isLoggedIn() {
 
 until [[ $WIN_ID ]]; do getHitleapId; sleep 1; done
 
-sleep 10
-xdotool windowactivate $WIN_ID
-xdotool sleep 2
+# Start auto log-in
+sleep 5
+# xdotool windowactivate $WIN_ID # not available on xvfb
+xdotool sleep 1
 xdotool key Tab
 xdotool type $HITLEAP_USER
 xdotool key Tab
 xdotool type $HITLEAP_PASS
 xdotool key Return
 
-until [[ $IS_LOGGED_IN ]]; do isLoggedIn; sleep 1; done
-echo -e "\n====================  HitLeap Viewer logged in ====================\n"
+until [[ $IS_LOGGED_IN ]]; do isLoggedIn; sleep 0.2; done
+echo -e "\n====================  HitLeap Viewer logged-in ====================\n"
+exit 0
