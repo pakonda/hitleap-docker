@@ -7,15 +7,8 @@
 [HitLeap](https://hitleap.com/by/pkd) docker image
 
 -------------------------
-<a target="_blank" href="https://hitleap.com/by/pkd"><img src="https://hitleap.com/banner.png" width="468" height="60"></a>
-
-Get $100 in cloud credits from @DigitalOcean using my link: https://m.do.co/t/e9d7773c782b
-
--------------------------
 
 ## Quick Start
-
--------------------------
 
 ```shell
 docker run -d \
@@ -24,3 +17,9 @@ docker run -d \
     -e HITLEAP_PASS=password \
     pakonda/hitleap
 ```
+-------------------------
+<a target="_blank" href="https://hitleap.com/by/pkd"><img src="https://hitleap.com/banner.png" width="468" height="60"></a>
+
+Get $100 in cloud credits from @DigitalOcean using my link: https://m.do.co/t/e9d7773c782b
+
+-------------------------
