@@ -6,14 +6,16 @@ if [ -z "$HITLEAP_USER" ] || [ -z "$HITLEAP_PASS" ]; then
     exit 1
 fi
 
-## start vnc
-$STARTUPDIR/vnc_startup.sh &
+## start xvfb
+echo -e "\nStarting virtual X frame buffer: Xvfb $DISPLAY\n"
+Xvfb $DISPLAY -ac -screen 0 800x600x16 -nolisten tcp &
 
 ## wait xvnc started
-until pgrep Xvnc; do sleep 1; done
+until pgrep Xvfb; do sleep 1; done
 sleep 3
 
 ## start hitleap
+echo -e "\nStarting HitLeap Viewer\n"
 cp $HITLEAP_DIR/app/data.orig $HITLEAP_DIR/app/data
-$STARTUPDIR/hitleap_auto_login.sh &
+$HITLEAP_DIR/hitleap_auto_login.sh &
 cd $HITLEAP_DIR && ./HitLeap-Viewer.desktop

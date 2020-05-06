@@ -4,7 +4,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/pakonda/hitleap)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/pakonda/hitleap)
 
-[HitLeap](https://hitleap.com/by/pkd) docker image with HTML5 VNC interface to access
+[HitLeap](https://hitleap.com/by/pkd) docker image
 
 -------------------------
 <a target="_blank" href="https://hitleap.com/by/pkd"><img src="https://hitleap.com/banner.png" width="468" height="60"></a>
@@ -20,9 +20,7 @@ Get $100 in cloud credits from @DigitalOcean using my link: https://m.do.co/t/e9
 ```shell
 docker run -d \
     --name hitleap \
-    -e VNC_PW=vncpassword \
     -e HITLEAP_USER=user \
     -e HITLEAP_PASS=password \
-    -p 6901:6901 \
     pakonda/hitleap
 ```

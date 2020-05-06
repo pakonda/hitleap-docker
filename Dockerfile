@@ -1,22 +1,18 @@
-FROM consol/ubuntu-icewm-vnc
-LABEL maintainer="pakondaman@gmail.com"
+FROM debian:buster-slim
 
-ENV HITLEAP_DIR=$HOME/hitleap \
-    VNC_RESOLUTION=800x600
-
-USER 0
-# RUN sed -i 's|archive.ubuntu|th.archive.ubuntu|g' /etc/apt/sources.list
-RUN apt-get update && apt-get -y install \
-    xz-utils \
-    xdotool \
-    chromium-browser \
-    && apt-get clean \
+RUN apt-get update && apt-get install -y \
+    curl xvfb chromium \
+    xdotool xz-utils procps \
+    libgconf-2-4 libgles2-mesa-dev \
     && rm -rf /var/lib/apt/lists/*
-USER 1000
+
+# ENV QT_DEBUG_PLUGINS=1
+ENV HITLEAP_DIR=/opt/hitleap \
+    DISPLAY=:1
 
 # Install HitLeap
 RUN mkdir -p $HITLEAP_DIR && \
-    wget -qO- https://hitleap.com/viewer/download?platform=Linux | tar -xJf - -C $HITLEAP_DIR && \
+    curl -sL https://hitleap.com/viewer/download?platform=Linux | tar -xJf - -C $HITLEAP_DIR && \
     chmod +x $HITLEAP_DIR/HitLeap-Viewer.desktop && \
     cp $HITLEAP_DIR/app/data $HITLEAP_DIR/app/data.orig
 
@@ -25,9 +21,7 @@ RUN ln -sf /proc/1/fd/1 $HITLEAP_DIR/app/hitleap-viewer.log && \
     cd $HITLEAP_DIR/app/releases/*/ && \
     ln -sf /dev/null ./cefsimple-log.txt
 
-COPY --chown=1000:root *.sh $STARTUPDIR/
-RUN chmod a+x $STARTUPDIR/hitleap_*.sh
+COPY *.sh $HITLEAP_DIR/
+RUN chmod a+x $HITLEAP_DIR/*.sh
 
-
-ENTRYPOINT ["/dockerstartup/hitleap_startup.sh"]
-CMD [ "--wait"]
+ENTRYPOINT "$HITLEAP_DIR/hitleap_startup.sh"
