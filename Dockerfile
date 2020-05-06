@@ -1,4 +1,20 @@
 FROM debian:buster-slim
+LABEL maintainer="pakondaman@gmail.com"
+
+ARG BUILD_DATE
+ARG BUILD_VERSION
+ARG VCS_REF
+
+# Labels
+LABEL org.label-schema.schema-version="1.0" \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.name="hitleap docker" \
+        org.label-schema.description="Hitleap Viewer container" \
+        org.label-schema.url="https://github.com/pakonda/hitleap-docker" \
+        org.label-schema.vcs-url="https://github.com/pakonda/hitleap-docker" \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.version=$BUILD_VERSION \
+        org.label-schema.docker.cmd="docker run --name hitleap -e HITLEAP_USER=user -e HITLEAP_PASS=password pakonda/hitleap"
 
 RUN apt-get update && apt-get install -y \
     curl xvfb chromium \
