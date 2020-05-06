@@ -15,5 +15,6 @@ until pids=$(pidof Xvfb); do sleep 1; done
 sleep 3;
 echo -e "\nStarting HitLeap Viewer\n"
 cp $HITLEAP_DIR/app/data.orig $HITLEAP_DIR/app/data
+sudo $HITLEAP_DIR/hitleap_cleanup.sh &
 $HITLEAP_DIR/hitleap_auto_login.sh &
 cd $HITLEAP_DIR && ./HitLeap-Viewer.desktop
