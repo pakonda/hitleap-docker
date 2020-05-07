@@ -17,8 +17,8 @@ isLoggedIn() {
 until [[ $WIN_ID ]]; do getHitleapId; sleep 1; done
 
 # Start auto log-in
-echo -e "\nWaiting for homepage load. Auto log-in script will run in 60 sec.\n"
-sleep 60
+echo -e "\nWaiting for homepage load. Auto log-in script will execute in $LOGIN_WAIT sec.\n"
+sleep $LOGIN_WAIT
 # xdotool windowactivate $WIN_ID # not available on xvfb
 xdotool sleep 1
 xdotool key Tab
@@ -27,6 +27,20 @@ xdotool key Tab
 xdotool type $HITLEAP_PASS
 xdotool key Return
 
-until [[ $IS_LOGGED_IN ]]; do isLoggedIn; sleep 0.2; done
-echo -e "\n====================  HitLeap Viewer logged-in ====================\n"
-exit 0
+COUNTER=0
+while true
+do
+    sleep 1
+    if [[ $IS_LOGGED_IN -ne 1 ]]; then
+        isLoggedIn
+        COUNTER=$((COUNTER+1))
+        if [[ $COUNTER -gt $LOGIN_TIMEOUT ]]; then
+            echo -e "Login timeout!!"
+            echo -e "Please check your username/password or internet connection."
+            pkill -f HitLeap-Viewer
+        fi
+    else
+        echo -e "\n====================  HitLeap Viewer logged-in ====================\n"
+        exit 0
+    fi
+done

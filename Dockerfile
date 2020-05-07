@@ -21,14 +21,16 @@ RUN \
     apt-get update && \
     apt-get install -y \
         sudo curl xvfb chromium \
-        xdotool xz-utils \
+        xdotool xz-utils procps \
         libgconf-2-4 libgles2-mesa-dev \
         && rm -rf /var/lib/apt/lists/*
 
 ENV \
     HOME=/home/app \
     HITLEAP_DIR=/home/app/hitleap \
-    DISPLAY=:1
+    DISPLAY=:1 \
+    LOGIN_WAIT=40 \
+    LOGIN_TIMEOUT=10
 
 # Create app user
 RUN \
