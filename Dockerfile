@@ -23,6 +23,7 @@ RUN \
         sudo curl xvfb chromium \
         xdotool xz-utils procps \
         libgconf-2-4 libgles2-mesa-dev \
+        openvpn \
         && rm -rf /var/lib/apt/lists/*
 
 ENV \
@@ -39,6 +40,7 @@ RUN \
     sed -i /etc/sudoers -re 's/^root.*/root ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
     sed -i /etc/sudoers -re 's/^#includedir.*/## **Removed the include directive** ##"/g' && \
     echo "app ALL=(ALL) ALL" >> /etc/sudoers && \
+    echo "app ALL=(ALL) NOPASSWD: /usr/sbin/openvpn" >> /etc/sudoers && \
     echo "app ALL=(ALL) NOPASSWD: $HITLEAP_DIR/hitleap_cleanup.sh" >> /etc/sudoers && \
     echo "app ALL=(ALL) NOPASSWD: /usr/bin/Xvfb" >> /etc/sudoers
 
