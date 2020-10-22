@@ -31,7 +31,8 @@ ENV \
     HITLEAP_DIR=/home/app/hitleap \
     DISPLAY=:1 \
     LOGIN_WAIT=40 \
-    LOGIN_TIMEOUT=10
+    LOGIN_TIMEOUT=10 \
+    AUTO_SHUT=0
 
 # Create app user
 RUN \
@@ -42,6 +43,7 @@ RUN \
     echo "app ALL=(ALL) ALL" >> /etc/sudoers && \
     echo "app ALL=(ALL) NOPASSWD: /usr/sbin/openvpn" >> /etc/sudoers && \
     echo "app ALL=(ALL) NOPASSWD: $HITLEAP_DIR/hitleap_cleanup.sh" >> /etc/sudoers && \
+    echo "app ALL=(ALL) NOPASSWD: $HITLEAP_DIR/hitleap_autoshut.sh" >> /etc/sudoers && \
     echo "app ALL=(ALL) NOPASSWD: /usr/bin/Xvfb" >> /etc/sudoers
 
 RUN \

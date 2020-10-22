@@ -15,6 +15,7 @@ docker run -d \
     --name hitleap \
     -e HITLEAP_USER=user \
     -e HITLEAP_PASS=password \
+    -e AUTO_SHUT=60 \ # Auto shutdown (minutes)
     pakonda/hitleap
 
 ## run multiple instances with openvpn

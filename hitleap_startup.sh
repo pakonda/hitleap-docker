@@ -30,5 +30,6 @@ echo -e "\nStarting HitLeap Viewer\n"
 sleep 5
 cp $HITLEAP_DIR/app/data.orig $HITLEAP_DIR/app/data
 sudo $HITLEAP_DIR/hitleap_cleanup.sh &
+sudo $HITLEAP_DIR/hitleap_autoshut.sh $AUTO_SHUT &
 $HITLEAP_DIR/hitleap_auto_login.sh &
 cd $HITLEAP_DIR && ./HitLeap-Viewer.desktop
