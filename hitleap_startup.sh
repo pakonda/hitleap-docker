@@ -25,6 +25,10 @@ if [[ "$OVPN" ]]; then
     echo -e "\nVPN $OVPN, Connection Initiated\n"
 fi
 
+# check public ip
+PUBLIC_IP=$(curl -s https://ifconfig.me)
+echo -e "\nPublic IP : $PUBLIC_IP"
+
 ## start hitleap
 echo -e "\nStarting HitLeap Viewer\n"
 sleep 5
